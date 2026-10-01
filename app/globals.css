@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05070a;
+  --background-secondary: #0b0f14;
+  --card: #11161d;
+  --foreground: #f6f8fa;
+  --muted: #9da7b3;
+  --primary: #2563eb;
+  --primary-hover: #3b82f6;
+  --border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-line: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* { border-color: var(--border); }
+html { background: var(--background); scroll-behavior: smooth; }
+body { min-width: 320px; background: var(--background); color: var(--foreground); font-family: Arial, Helvetica, sans-serif; }
+::selection { background: rgba(59, 130, 246, 0.32); color: var(--foreground); }
+:focus-visible { outline: 2px solid #3b82f6; outline-offset: 3px; }
+
+@layer components {
+  .site-container { width: min(100% - 2rem, 76rem); margin-inline: auto; }
+  .card-surface { border: 1px solid var(--border); background: var(--card); }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (min-width: 640px) { .site-container { width: min(100% - 3rem, 76rem); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
